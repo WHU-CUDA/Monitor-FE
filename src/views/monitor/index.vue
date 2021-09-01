@@ -1,7 +1,7 @@
 <template>
   <div class="outer">
     <el-card>
-      <BasicAreaChart :data="chartData" :labels="labels" :title="title"/>
+      <BasicAreaChart :data="chartData" :labels="labels" :title="title" />
     </el-card>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
     return {
       chartData: [820, 932, 901, 934, 1290, 1330, 1320],
       labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      title: { show: true, text: '测试永彪' }
+      title: { show: true, text: '测试' }
     }
   }
 }
