@@ -1,7 +1,7 @@
 <template>
   <div class="outer">
     <el-card>
-      <BasicAreaChart :data="chartData" :labels="labels" :title="title"/>
+      <BasicAreaChart :data="chartData" :labels="labels" :title="title" />
     </el-card>
   </div>
 </template>
