@@ -15,7 +15,6 @@
       :data="list"
       element-loading-text="Loading"
       border
-      style="font-size: 1px"
       :cell-style="{padding: '0'}"
       fit
       highlight-current-row
@@ -133,7 +132,6 @@ export default {
       this.$api.table.getList({ start: this.start, length: this.length }).then(response => {
         if (response.code === 200) {
           this.list = response.data.tasks
-          console.log(response.data.tasks)
           this.total = response.data.total
           this.listLoading = false
         }

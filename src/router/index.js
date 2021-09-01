@@ -50,19 +50,8 @@ export const constantRoutes = [
       {
         path: '/dashboard',
         name: 'ServerTable',
-        children: [
-          {
-            path: '',
-            component: () => import('@/views/dashboard/index'),
-            meta: { title: 'Dashboard', icon: 'dashboard' },
-          },
-          {
-            path: '/detail',
-            component: () => import('@/views/')
-          }
-
-        ]
-
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: 'Dashboard', icon: 'dashboard' }
       },
       {
         path: '/tasks',
@@ -72,7 +61,12 @@ export const constantRoutes = [
       {
         path: '/broker',
         component: () => import('@/views/broker/index'),
-        meta: { title: 'Brokers', icon: 'eye-open' }
+        meta: { title: 'Brokers', icon: 'form' }
+      },
+      {
+        path: '/monitor',
+        component: () => import('@/views/monitor/index'),
+        meta: { title: 'Monitor', icon: 'eye-open' }
       }
     ]
   },

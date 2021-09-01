@@ -1,13 +1,11 @@
 <template>
   <div class="broker">
-    <div v-for="(item, key) in listData" :key="key">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span>Broker:{{ item.conf.broker_url }}</span>
-          <BrokerTable :table-data="item.conf.task_queues" />
-        </div>
-      </el-card>
-    </div>
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span style="font-weight: bolder">Broker  {{ brokerURL }}</span>
+      </div>
+      <BrokerTable :table-data="queues" />
+    </el-card>
   </div>
 </template>
 
@@ -19,7 +17,8 @@ export default {
   },
   data() {
     return {
-      listData: []
+      brokerURL: '',
+      queues: []
     }
   },
   mounted() {
@@ -28,8 +27,9 @@ export default {
   methods: {
     getBrokers() {
       this.$api.broker.getBrokerData().then(res => {
-        for (const key in res) {
-          this.listData.push(res[key])
+        if (res.code === 200) {
+          this.brokerURL = res.data.broker_url
+          this.queues = res.data.queues
         }
       })
     }

@@ -11,24 +11,33 @@
         width="180"
       />
       <el-table-column
-        prop="message"
-        label="Message"
+        prop="messages"
+        label="Messages"
         width="180"
       />
       <el-table-column
-        prop="unacked"
         label="Unacked"
         width="180"
-      />
+      >
+        <template slot-scope="scope">
+          {{ scope.row.unacked || 0 }}
+        </template>
+      </el-table-column>
       <el-table-column
-        prop="consumers"
         label="Consumers"
         width="180"
-      />
+      >
+        <template slot-scope="scope">
+          {{ scope.row.consumers || 0 }}
+        </template>
+      </el-table-column>
       <el-table-column
-        prop=""
         label="Idle since"
-      />
+      >
+        <template slot-scope="scope">
+          {{ scope.row.idle_since || 'N/A' }}
+        </template>
+      </el-table-column>
     </el-table>
 
   </div>

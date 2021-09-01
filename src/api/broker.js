@@ -3,7 +3,7 @@ import request from '@/utils/request'
 const broker = {
   getBrokerData(params) {
     return request({
-      url: '/api/workers',
+      url: '/api/broker',
       method: 'get',
       params
     })

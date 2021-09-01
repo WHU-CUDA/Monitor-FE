@@ -12,7 +12,8 @@ import api from '@/api'
 import '@/icons' // icon
 import '@/permission' // permission control
 import moment from 'moment'
-moment.locale('zh-cn');
+
+moment.locale('zh-cn')
 
 /**
  * If you don't want to use mock-server
@@ -31,6 +32,7 @@ Vue.filter('formatDate', function(value) {
 })
 Vue.prototype.$api = api
 Vue.prototype.$moment = moment
+
 // set ElementUI lang to EN
 // Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明

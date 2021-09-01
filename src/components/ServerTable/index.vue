@@ -64,7 +64,45 @@
           </el-tag>
         </template>
       </el-table-column>
-
+      <el-table-column>
+        <!--        如果设备信息不存在就不显示-->/*
+        <el-table-column label="CPU">
+          <el-table-column label="Cores">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.cpu.cores || 0 }}
+            </template>
+          </el-table-column>
+          <el-table-column label="Logical Cores">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.cpu.logical_counts || 0 }}
+            </template>
+          </el-table-column>
+          <el-table-column label="Usage">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.cpu.usage || 0 }} %
+            </template>
+          </el-table-column>
+        </el-table-column>
+        <el-table-column label="GPU Mem Usage">
+          <template slot-scope="scope">
+            <template v-for="item in scope.row.device_info.gpu">
+              {{ item.usage || 0 }} %
+            </template>
+          </template>
+        </el-table-column>
+        <el-table-column label="Memory">
+          <el-table-column label="Total">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.mem.total || 0 }} MB
+            </template>
+          </el-table-column>
+          <el-table-column label="Free">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.mem.free || 0 }} MB
+            </template>
+          </el-table-column>
+        </el-table-column>
+      </el-table-column>
       <el-table-column
         prop="sw_sys"
         label="Platform"
@@ -89,8 +127,12 @@ export default {
   },
   data() {
     return {
-      statusLabel
+      statusLabel,
+      index: 0
     }
+  },
+  methods: {
+
   }
 }
 </script>
