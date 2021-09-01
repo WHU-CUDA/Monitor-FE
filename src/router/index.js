@@ -56,7 +56,7 @@ export const constantRoutes = [
       {
         path: '/dashboard/detail',
         name: 'Detail',
-        props: { newsletterPopup: false },
+        props: true,
         component: () => import('@/views/dashboard/detail')
       },
       {

@@ -79,17 +79,12 @@
           </el-table-column>
           <el-table-column label="Usage" align="center">
             <template slot-scope="scope">
-              <el-progress :width="50" type="circle" :percentage="scope.row.device_info.cpu.usage"></el-progress>
+              <el-progress :width="50" type="circle" :percentage="scope.row.device_info.cpu.usage" />
               <!--              {{ scope.row.device_info.cpu.usage || 0 }} %-->
             </template>
           </el-table-column>
         </el-table-column>
         <el-table-column label="GPU 0">
-          <el-table-column label="Name">
-            <template slot-scope="scope">
-              {{ scope.row.device_info.gpu[0].name }}
-            </template>
-          </el-table-column>
           <el-table-column label="Mem Total">
             <template slot-scope="scope">
               {{ scope.row.device_info.gpu[0].total }} MB
@@ -102,7 +97,7 @@
           </el-table-column>
           <el-table-column label="Usage Rate" align="center">
             <template slot-scope="scope">
-              <el-progress :width="55" type="circle" :percentage="scope.row.device_info.gpu[0].usage"></el-progress>
+              <el-progress :width="55" type="circle" :percentage="scope.row.device_info.gpu[0].usage" />
             </template>
           </el-table-column>
         </el-table-column>
