@@ -1,12 +1,12 @@
 <template>
-  <div class="warpper">
-    hello world
+  <div>
+    {{ server }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Serve',
+  name: 'Detail',
   props: {
     server: {
       type: Object,

@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ServerTable from '@/components/ServerTable'
+import ServerTable from '@/components/Dashboard'
 export default {
   name: 'Dashboard',
   components: {

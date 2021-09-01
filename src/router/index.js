@@ -54,6 +54,12 @@ export const constantRoutes = [
         meta: { title: 'Dashboard', icon: 'dashboard' }
       },
       {
+        path: '/dashboard/detail',
+        name: 'Detail',
+        props: { newsletterPopup: false },
+        component: () => import('@/views/dashboard/detail')
+      },
+      {
         path: '/tasks',
         component: () => import('@/views/tasks/index'),
         meta: { title: 'Tasks', icon: 'nested' }
@@ -68,7 +74,8 @@ export const constantRoutes = [
         component: () => import('@/views/monitor/index'),
         meta: { title: 'Monitor', icon: 'eye-open' }
       }
-    ]
+    ],
+    meta: { title: 'Kernel Monitor' }
   },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

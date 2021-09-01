@@ -12,7 +12,7 @@
         width="180"
       >
         <template slot-scope="scope">
-          <el-link type="primary">{{ scope.row.hostname }}</el-link>
+          <el-link type="primary" @click="toDetail(scope.row)">{{ scope.row.hostname }}</el-link>
         </template>
       </el-table-column>
       <el-table-column
@@ -64,8 +64,8 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column>
-        <!--        如果设备信息不存在就不显示-->/*
+      <!-- 设备信息 start -->
+      <el-table-column label="Device Info">
         <el-table-column label="CPU">
           <el-table-column label="Cores">
             <template slot-scope="scope">
@@ -77,18 +77,34 @@
               {{ scope.row.device_info.cpu.logical_counts || 0 }}
             </template>
           </el-table-column>
-          <el-table-column label="Usage">
+          <el-table-column label="Usage" align="center">
             <template slot-scope="scope">
-              {{ scope.row.device_info.cpu.usage || 0 }} %
+              <el-progress :width="50" type="circle" :percentage="scope.row.device_info.cpu.usage"></el-progress>
+              <!--              {{ scope.row.device_info.cpu.usage || 0 }} %-->
             </template>
           </el-table-column>
         </el-table-column>
-        <el-table-column label="GPU Mem Usage">
-          <template slot-scope="scope">
-            <template v-for="item in scope.row.device_info.gpu">
-              {{ item.usage || 0 }} %
+        <el-table-column label="GPU 0">
+          <el-table-column label="Name">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.gpu[0].name }}
             </template>
-          </template>
+          </el-table-column>
+          <el-table-column label="Mem Total">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.gpu[0].total }} MB
+            </template>
+          </el-table-column>
+          <el-table-column label="Mem Free">
+            <template slot-scope="scope">
+              {{ scope.row.device_info.gpu[0].free }} MB
+            </template>
+          </el-table-column>
+          <el-table-column label="Usage Rate" align="center">
+            <template slot-scope="scope">
+              <el-progress :width="55" type="circle" :percentage="scope.row.device_info.gpu[0].usage"></el-progress>
+            </template>
+          </el-table-column>
         </el-table-column>
         <el-table-column label="Memory">
           <el-table-column label="Total">
@@ -103,6 +119,7 @@
           </el-table-column>
         </el-table-column>
       </el-table-column>
+      <!-- 设备信息 end -->
       <el-table-column
         prop="sw_sys"
         label="Platform"
@@ -127,12 +144,13 @@ export default {
   },
   data() {
     return {
-      statusLabel,
-      index: 0
+      statusLabel
     }
   },
   methods: {
-
+    toDetail(server) {
+      this.$router.push({ name: 'Detail', params: { server: server }})
+    }
   }
 }
 </script>
