@@ -1,7 +1,15 @@
 <template>
   <div class="outer">
-    <el-card>
-      <BasicAreaChart :data="chartData" :labels="labels" :title="title" />
+    <el-card style="margin: 1%;">
+      <div slot="header" class="clearfix">
+        <span>Active</span>
+      </div>
+      <BasicAreaChart />
+    </el-card>
+    <el-card style="margin: 1%;">
+      <div slot="header" class="clearfix">
+        <span></span>
+      </div>
     </el-card>
   </div>
 </template>
