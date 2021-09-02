@@ -8,7 +8,7 @@
     </el-card>
     <el-card style="margin: 1%;">
       <div slot="header" class="clearfix">
-        <span></span>
+        <span>CPU Usage</span>
       </div>
     </el-card>
   </div>

@@ -63,16 +63,20 @@
 
       <el-table-column label="Received">
         <template slot-scope="scope">
-          {{ parseInt(scope.row.received) * 1000 | formatDate }}
+          {{ formatDate(scope.row.received) }}
         </template>
       </el-table-column>
 
       <el-table-column label="Started">
         <template slot-scope="scope">
-          {{ parseInt(scope.row.started) * 1000 | formatDate }}
+          {{ formatDate(scope.row.started) }}
         </template>
       </el-table-column>
-
+      <el-table-column label="Succeeded">
+        <template slot-scope="scope">
+          {{ formatDate(scope.row.succeeded) }}
+        </template>
+      </el-table-column>
       <el-table-column label="Runtime">
         <template slot-scope="scope">
           {{ scope.row.runtime }}
@@ -151,6 +155,13 @@ export default {
     handleCurrentChange(val) {
       this.start = val
       this.fetchData()
+    },
+    formatDate(s) {
+      if (s) {
+        return this.$moment(s * 1000).format('YYYY-MM-DD HH:mm:ss')
+      } else {
+        return 'N/A'
+      }
     }
   }
 }

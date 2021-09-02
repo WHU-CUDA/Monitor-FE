@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card style="margin: 1%;">
-      <el-descriptions class="margin-top" :title="server.hostname" :column="3" :size="size" border>
+      <el-descriptions class="margin-top" :title="server.hostname" :column="3" border>
         <template slot="extra">
           <el-button type="primary" size="small">操作</el-button>
         </template>
@@ -26,19 +26,21 @@
           </template>
           {{ Math.ceil(server.device_info.mem.total / 1024) }} GB
         </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions v-for="(gpu, index) in server.device_info.gpu" :key="index" class="margin-top" :column="2" border>
         <el-descriptions-item>
           <template slot="label">
             <svg-icon icon-class="gpu" />
-            GPU
+            GPU {{ index }}
           </template>
-          {{ server.device_info.gpu[0].name }}
+          {{ gpu.name }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label">
             <svg-icon icon-class="mem" />
-            GPU 内存
+            内存
           </template>
-          {{ Math.ceil(server.device_info.gpu[0].total / 1024) }} GB
+          {{ Math.ceil(gpu.total / 1024) }} GB
         </el-descriptions-item>
       </el-descriptions>
     </el-card>

@@ -14,7 +14,8 @@ export default {
   },
   data: function() {
     return {
-      tableData: null
+      tableData: null,
+      timer: null
     }
   },
   computed: {
@@ -22,13 +23,15 @@ export default {
       'name'
     ])
   },
-  mounted() {
+  created() {
     this.getTableData()
     this.timer = window.setInterval(() => {
-      setTimeout(() => {
-        this.getTableData()
-      }, 0)
+      this.getTableData()
     }, 2000)
+  },
+  beforeDestroy() {
+    console.log(this.timer)
+    window.clearInterval(this.timer)
   },
   methods: {
     getTableData() {
