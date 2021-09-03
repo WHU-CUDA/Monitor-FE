@@ -23,9 +23,6 @@ export default {
   },
   data() {
     return {
-      chartData: [820, 932, 901, 934, 1290, 1330, 1320],
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      title: { show: true, text: '测试' }
     }
   }
 }

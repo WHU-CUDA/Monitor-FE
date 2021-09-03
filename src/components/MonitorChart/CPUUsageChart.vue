@@ -1,7 +1,6 @@
 <template>
   <div id="container" />
 </template>
-
 <script>
 import { Line } from '@antv/g2plot'
 
@@ -9,37 +8,24 @@ export default {
   data() {
     return {
       line: null,
-      dataList: [],
-      interval: null
+      dataList: []
     }
   },
-  created() {
+  mounted() {
     this.initLine()
-    this.interval = setInterval(() => {
-      this.$api.dashboard.getTableData({ 'usage': 1 }).then(res => {
-        if (res.code === 200) {
-          this.dataList.push(...res.data)
-          this.line.changeData(this.dataList)
-        }
-      })
-    }, 5000)
-  },
-  beforeDestroy() {
-    window.clearInterval(this.interval)
   },
   methods: {
-    getData() {
-      // generate an array of random data
-      this.$api.dashboard.getTableData({ 'usage': 1 }).then(res => {
-        if (res.code === 200) {
-          this.dataList.push(...res.data)
-        }
-      })
-    },
     initLine() {
       this.$api.dashboard.getTableData({ 'usage': 1 }).then(res => {
+        const data = []
+        for (let i = 0; i < res.data.length; i++) {
+          const usage = res.data[i].device_info.cpu.usage
+          const date = res.data[i].date
+          const hostname = res.data[i].hostname
+          data.push({ usage, date, hostname })
+        }
         const line = new Line('container', {
-          data: res.data,
+          data: data,
           xField: 'date',
           yField: 'active',
           seriesField: 'hostname',
@@ -66,7 +52,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

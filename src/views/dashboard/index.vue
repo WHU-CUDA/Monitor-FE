@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <server-table :table-data="tableData" />
+    <server-table v-loading="loading" :table-data="tableData" />
   </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   data: function() {
     return {
       tableData: null,
-      timer: null
+      timer: null,
+      loading: true
     }
   },
   computed: {
@@ -27,16 +28,17 @@ export default {
     this.getTableData()
     this.timer = window.setInterval(() => {
       this.getTableData()
-    }, 2000)
+    }, 5000)
   },
   beforeDestroy() {
-    console.log(this.timer)
+    this.loading = true
     window.clearInterval(this.timer)
   },
   methods: {
     getTableData() {
       this.$api.dashboard.getTableData({ 'json': 1 }).then(res => {
         this.tableData = res.data
+        this.loading = false
       })
     }
   }

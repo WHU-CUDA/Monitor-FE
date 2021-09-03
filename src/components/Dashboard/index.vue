@@ -84,22 +84,17 @@
             </template>
           </el-table-column>
         </el-table-column>
-        <el-table-column label="GPU 0">
-          <el-table-column label="Mem Total">
-            <template slot-scope="scope">
-              {{ scope.row.device_info.gpu[0].total }} MB
-            </template>
-          </el-table-column>
-          <el-table-column label="Mem Free">
-            <template slot-scope="scope">
-              {{ scope.row.device_info.gpu[0].free }} MB
-            </template>
-          </el-table-column>
-          <el-table-column label="Usage Rate" align="center">
-            <template slot-scope="scope">
-              <el-progress :width="55" type="circle" :percentage="scope.row.device_info.gpu[0].usage" />
-            </template>
-          </el-table-column>
+        <el-table-column label="GPU">
+          <template slot-scope="scope">
+            <el-popover v-for="(gpu, index) in scope.row.device_info.gpu" :key="index" trigger="hover" placement="top">
+              <p>型号: {{ gpu.name }}</p>
+              <p>使用率: {{ gpu.usage }} %</p>
+              <p>内存: {{ Math.ceil(gpu.total / 1024) }} GB</p>
+              <div slot="reference" class="name-wrapper">
+                <el-tag size="small">{{ 'GPU '+index }}</el-tag>
+              </div>
+            </el-popover>
+          </template>
         </el-table-column>
         <el-table-column label="Memory">
           <el-table-column label="Total">
@@ -151,5 +146,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
