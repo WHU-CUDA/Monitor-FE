@@ -73,6 +73,11 @@ export const constantRoutes = [
         path: '/monitor',
         component: () => import('@/views/monitor/index'),
         meta: { title: 'Monitor', icon: 'eye-open' }
+      },
+      {
+        path: '/tasks/create',
+        component: () => import('@/views/tasks/create'),
+        meta: { title: 'CreateTasks', icon: 'nested' }
       }
     ],
     meta: { title: 'Kernel Monitor' }
